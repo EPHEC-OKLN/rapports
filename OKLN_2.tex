@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel} 
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+
+\includegraphics[width=0.5\textwidth]{logo-ephec.png}\\[1cm]
+{\large 3TI - 2017-2018}\\[0.5cm]
+
+{\large Réseau d'entreprise}\\[0.8cm]
+%régler l'espacement entre les lignes
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+% Title
+\HRule \\[0.7cm]
+%{ 
+%\includegraphics[width=0.5\textwidth]{images/sharelet.png}\\
+%}
+{\huge \bfseries OKLN\\[0.75cm] }
+{\bfseries Groupe B }\\[1cm]
+\HRule \\[2.5cm]
+
+
+6 Février 2018
+
+\end{center}
+\end{titlepage}
+%\title{Rapport 1}
+%\author{OKLN}
+%\date{5 Février 2018}
+
+%\maketitle
+
+\section{Introduction}
+Seconde journée de projet. L'infrastructure est confrontée à des problèmes dont la résolution est difficile. La configuration de pfsense semble aussi poser quelques problèmes et du retard sur le planning est constaté.
+
+\section{Infrastructure réseau}
+    \subsection{Tâches réalisées}
+        Le 5 Février 2018, nous avons réalisé une infrastructure adaptée à nos besoins. Nous avions réalisé les schémas logiques et physiques correspondant. Cependant, suite à notre entretien avec M. Schalkjiwk, nous avons apporté quelques modifications à celles-ci.
+        
+        Nous avons commencé par mettre en place les VLANs tels que définis dans le schéma logique.
+        
+        La secone étape a été la configuration ip de notre réseau. Sans cela, de nombreux services ne peuvent être installés et configurés.
+        
+        Ensuite, nous avons mis en place le protocoles de routage OSPF et le protocole VTP  afin de simplifier l'administration de notre infrastructure.
+        
+    \subsection{Difficultés rencontrées}
+    
+    Nous avons été confronté à quelques problèmes qui ont eu pour conséquence de ralentir notre progression. Les problèmes rencontrés ont été les suivants:
+    \newline
+    
+    \textbf{Comment mettre en place une solution de secours en cas de panne du réseau ?} 
+     \newline
+    
+    La solution a été de rajouter une switch L3 dans l'infrastructure. Ainsi encas de panne, un composant de secours pourra assurer le fonctionnement du réseau.
+    \newline
+    
+     \textbf{Comment répondre au manque d'interfaces disponibles ?} 
+     \newline
+     
+     Nous avons ajouté un switch L2 supplémentaire afin d'avoir plus d'interface à disposition et ainsi augmenté la capactité du réseau.
+     \newline
+     
+      \textbf{Comment répartir les VLANs sur les switch L3 ?} 
+     \newline
+     
+     2 options se présentaient à nous. Nous pouvions soit répartie les VLANs sur les 2 switch L3 afin de partager les ressources, soit les installer sur le même switch.
+     C'est finalement cette dernière option qui a été adoptée, le second switch L3 servira en cas de panne dans le réseau.
+      \newline
+     
+      \textbf{Comment définir le chemin prioritaire ?} 
+     \newline
+     
+     Pour répondre à cette question, nous nous sommes tournés vers un protocole propriétaire nommé HSRP. Ce protocole va assurer une disponibilité optimale du réseau et une résistance aux panes intéressante.
+      \newline
+     
+      \textbf{Comment assurer la sécurité des zones principales ?} 
+     \newline
+     
+     Nous avons décidé de mettre la TZ et la DMZ au niveau de firewall dans le but d'améliorer la sécurité du réseau.
+     
+     
+     
+    \subsection{Remarques importantes}
+   
+
+\section{Mail}
+
+\subsection{Technologies utilisées}
+
+ 
+\section{Sécurité}
+    \subsection{Tâches réalisées} 
+   
+    \subsection{Motivation technologies/infrastructures} 
+   
+\section{Logistique}
+   
+    \subsection{Difficultés rencontrées}
+    
+    \subsection{Remarques importantes}
+    
+\section{Services internet}
+    \subsection{Tâches réalisées} 
+   
+    \subsection{Difficultés rencontrées} 
+    
+    \subsection{Technologies utilisées}
+   
+\section{Déploiement}
+    \subsection{Tâches réalisées} 
+       
+    \subsection{Difficultés rencontrées}
+    
+    \subsection{Motivation techonlogies/infrastructures}
+   
+    \subsection{Remarques importantes}
+ 
+\section{Rapports \& organisation}
+
+    \subsection{Tâches réalisées} 
+   
+    \subsection{Motivation des technologies/infrastructures}
+   
+    \subsection{Difficultés rencontrées} 
+    
+    \subsection{Remarques importantes}
+
+\section{sources}
+
+    \subsection{sécurité}
+   
+    \subsection{déploiement}
+   
+    \subsection{rapports}
+       
+    \subsection{Services internet}
+   
+\end{document}
