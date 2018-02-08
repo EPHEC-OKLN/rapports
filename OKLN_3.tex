@@ -1,0 +1,743 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel} 
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage[table]{xcolor}
+\usepackage{moreverb}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+
+\input{cover.tex}
+
+7 Février 2018
+
+\end{center}
+\end{titlepage}
+
+\section{Introduction}
+
+\section{Infrastructure réseau}
+    \subsection{Tâches réalisées}
+        \begin{itemize}
+            \item Finition de l'infrastructure
+            \item Test de simulation packet tracer
+            \item Reset stack number
+            \item Configuration de vtp
+            \item Telnet pour les switchs L2
+            \item Cablage des différents switchs
+        \end{itemize}
+    \subsection{Difficultés rencontrées}
+        \begin{itemize}
+            \item Pas de ssh sur les L2 => utilisation de telnet 
+            \item Pas de vtp sur les switchs L2
+        \end{itemize}
+        
+    \subsection{Topologie améliorée}
+    \begin{figure}[ht]
+        \begin{center}
+            \includegraphics[scale=0.5]{topo_2.PNG} 
+        \end{center}
+    \end{figure}
+    
+    \newpage
+    \subsection{Table d'adressage}
+    \begin{figure}[ht]
+        \begin{center}
+            \includegraphics[scale=0.5]{table_adressage_2.PNG} 
+        \end{center}
+    \end{figure}
+    
+    \subsection{configuration IOS}
+    Cfr Annexe.
+   
+\section{Ressources Informatiques}
+    \subsection{Tâches réalisées}
+    \begin{itemize}
+        \item  Activation de DHCP et la configuration des vlan à l'intérieur de ce dernier
+            \begin{itemize}
+                \item Vlan User
+                \item Vlan Guest
+            \end{itemize}
+             \item Configuration du DNS ( nom de domaine , Adresse IP...)
+             \item Configuration du serveur windows File et l'attribution des adresses IP
+    \end{itemize}
+      
+    \subsection{Difficultés rencontrées}
+    \begin{itemize}
+        \item Suite à un problème de délégation du DNS, nous avons refait un nouveau serveur Windows bien propre.
+        \item Un problème de liaison entre l'Active Directory et le service DNS
+    \end{itemize}
+
+\section{Mail}
+    \subsection{Tâches réalisées}
+    \begin{itemize}
+    \item Téléchargement et installation d'Exchange 2016 sur le serveur Windows (mail) -- NON FINI
+        \item \begin{itemize}
+            \item Rôle de boîtes aux lettres
+            \item Nom d'organisation : OKLN
+            \item Protection contre les porgrammes malveillants actif
+        \end{itemize}
+    \end{itemize}
+    
+     \subsection{Difficultés rencontrées}
+     \begin{itemize}
+         \item Bug d'administration du DC et pas d'accès internet pour installer les différents services nécessaires.
+     \end{itemize}
+     
+\section{Sécurité}
+    \subsection{Tâches réalisées} 
+        \begin{itemize}
+            \item Documentation sur le package quagga OSPF (pfSense)
+            \item Configurer openVPN
+            \item OSPF sur pfSense
+            \item Reverse Proxy
+            \item Mise en place du DNS
+        \end{itemize}
+        
+    \subsection{Problèmes rencontrés} 
+    \begin{description}
+        \item[openVPN :] 
+        Il reste encore certains problèmes à régler mais nous sommes en bonne voie. Nous avons eu quelques problèmes car il n'y avait pas de DNS en place.
+        \item[DNS :]
+        Il n'y a pas eu de problèmes majeurs excepté l'absence d'un ";" dans un fichier de config.
+    \end{description}
+
+\section{Logistique}
+    \subsection{Tâches réalisées}
+       Comme les jours précedents, à notre arrivé nous prenons toujours un petit quart d'heure pour vérifier que le matériel est toujours bien en place et est complet. Aujourd'hui nous avons eu besoin de faire des câbles croisés pour connecter les switch entre eux. Étant donné que nous n'en avions pas assez on à du les faire nous-mêmes et nous remémorer les labo de Telecom que nous avions eu les années précédentes. Nous avons bien veillé à ce que l'endroit où nous avons fait les câbles soit propre après notre passage. Nous avons aussi rangé deux switch que nous n'avions plus besoin pour ne pas encombrer le local.
+    
+\section{Services internet}
+    \subsection{Tâches réalisées} 
+        \begin{itemize}
+            \item configuration du serveur nginx (Cfr. Annexe)
+        \end{itemize}
+        
+\section{Déploiement}
+    \subsection{Tâches réalisées} 
+        \begin{itemize}
+            \item Nous avons commencé par installer un serveur de type Windows Server 2016. Nous l'avons ensuite dupliqué pour mettre en place les services suivants:
+                \begin{itemize}
+                    \item Windows Server Active Directory
+                    \item Windows Server Exchange
+                    \item Windows Server Deploy
+                \end{itemize}
+            \item Nous avons ensuite veillé à ce que la configuration des machines virtuelles soit réalisée correctement, nous avons ensuite mis en place la configuration ip.
+            \item Nous avons également mis en place un service DHCP pour simplifier l'administration.
+            \item Nous avons finalement installé une machine Debian, vouée à être dupliquée par la suite pour mettre en place le proxy.
+        \end{itemize}
+       
+    \subsection{Difficultés rencontrées}
+        Swapping de fichier ?? Plus de détails...
+
+\section{sources}
+%        \begin{itemize}
+%            \item \url{}
+%        \end{itemize}
+    
+    \subsection{Sécurité}
+        \begin{itemize}
+            \item quagga pfSense package \url{https://forum.pfsense.org/index.php?topic=126842.0}
+            \item quagga pfSense package \url{https://forum.pfsense.org/index.php?topic=126842.15}
+            \item openVPN \url{https://en.wikipedia.org/wiki/Certificate_revocation_list}
+        \end{itemize}
+    
+    \subsection{Mail}
+        \begin{itemize}
+            \item \url{https://www.microsoft.com/en-us/download/details.aspx?id=49161}
+        \end{itemize}
+
+\appendix
+    \section{config web NGINX}
+    \scriptsize
+    \begin{verbatimtab}[4]
+server {
+	listen   80; ## listen for ipv4; this line is default and implied
+	listen   [::]:80 default ipv6only=on; ## listen for ipv6
+
+	root /code/www/;
+	index index.php index.html index.htm test.php;
+
+	# Make site accessible from http://localhost/
+	server_name www.okln.ephec-ti.be;
+
+	# Redirection HTTP vers HTTPS
+        # return 301 https://$server_name$request_uri;
+
+	# Disable sendfile as per https://docs.vagrantup.com/v2/synced-folders/virtualbox.html
+	sendfile off;
+
+	# Add stdout logging
+	error_log /dev/stdout info;
+	access_log /dev/stdout;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to index.html
+		try_files $uri $uri/ =404;
+	}
+
+	error_page 404 /404.html;
+        location = /404.html {
+                root /code/404/;
+                internal;
+        }
+
+        location ^~ /ngd-style.css {
+            alias /var/www/errors/style.css;
+            access_log off;
+        }
+
+        location ^~ /ngd-sad.svg {
+            alias /var/www/errors/sad.svg;
+            access_log off;
+        }
+
+	# pass the PHP scripts to FastCGI server listening on socket
+	#
+	location ~ \.php$ {
+                try_files $uri =404;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_pass unix:/var/run/php-fpm.sock;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    		fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+		fastcgi_index index.php;
+		include fastcgi_params;
+	}
+
+        location ~* \.(jpg|jpeg|gif|png|css|js|ico|webp|tiff|ttf|svg)$ {
+                expires           5d;
+        }
+
+	# deny access to . files, for security
+	#
+	location ~ /\. {
+    		log_not_found off;
+    		deny all;
+	}
+
+	location ^~ /.well-known {
+                allow all;
+                auth_basic off;
+        }
+
+}
+
+server{
+	listen 443 ssl;
+	root /code/www;
+
+	server_name www.okln.ephec-ti.be;
+
+        ssl_certificate /code/certs/live/www.okln.ephec-ti.be/fullchain.pem;
+        ssl_certificate_key /code/certs/live/www.okln.ephec-ti.be/privkey.pem;
+
+        ssl_stapling on;
+        ssl_stapling_verify on;
+        ssl_trusted_certificate /code/certs/live/www.okln.ephec-ti.be/fullchain.pem;
+
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_prefer_server_ciphers on;
+        ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
+        #Redirection erreur page 404 perso
+        error_page 404 /404.html;
+        location = /404.html {
+                root /code/404/;
+                internal;
+        }
+
+}
+
+    \end{verbatimtab}
+    \section{config infra packet tracer}
+    \scriptsize
+        \begin{verbatimtab}
+------
+CSW01
+-----
+!
+
+enable
+conf t
+hostname CSW01
+service password-encryption
+!configuration de base 
+!
+ip domain-name okln.ephec-ti.be
+crypto key generate rsa
+2048
+!
+no ip domain-lookup
+banner login "Access for authorized users only !"
+service password-encryption
+username admin privilege 15
+enable secret cisco
+ip ssh time-out 15
+ip ssh authentication-retries 3
+line console 0
+  password cisco
+  logging synchronous
+  login
+  exit
+line vty 0 4
+  login local
+  transport input ssh
+  exec-timeout 3 30 
+!
+!
+!------------------------creation des vlan-----------------------------------------------------------------
+!vlan database
+vlan 10 
+name service
+vlan 30 
+name guest
+vlan 50 
+name user
+vlan 60 
+name management
+!----------------------------------------------------------------------------------
+! SVI
+interface vlan 10
+  description "vers le VLAN service"
+  ip address 192.168.10.254 255.255.255.0
+  no shutdown
+!      
+interface vlan 30
+  description "vers le VLAN guest"
+  ip address 192.168.30.254 255.255.255.0
+  ip helper-address 192.168.10.8
+  no shutdown
+!
+interface vlan 50
+  description "vers du VLAN user"
+  ip address 192.168.50.254 255.255.255.0
+  ip helper-address 192.168.10.8
+  no shutdown
+!
+interface vlan 60
+  description "vers le VLAN management"
+  ip address 192.168.60.254 255.255.255.0
+  no shutdown
+!
+
+!
+! - Configuration de VTP
+!
+vtp mode server
+vtp domain okln.ephec-ti.be
+vtp pruning
+vtp password cisco 
+!
+! - Configuration des interfaces
+!       
+interface f1/0/1
+  description "vers core-to-distribu(f0/1)"
+  no switchport
+  ip address 172.16.0.2 255.255.255.248
+  no shut
+!  
+interface f1/0/2
+  description "Vers SW01 (f1/0/1)"
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 60
+!
+interface f1/0/3
+  description "Vers SW02(f1/0/1)"
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 60
+!
+interface f1/0/4
+  description "Vers CSW02(f1/0/1)"
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 60 
+!
+interface f1/0/5
+  description "Vers CSW02(f1/0/2)"
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 60 
+!
+ 
+! - Routage
+!
+ip routing
+router ospf 1
+	network 172.16.0.0 0.0.0.7 area 0
+	network 192.168.10.0 0.0.0.255 area 0
+	network 192.168.30.0 0.0.0.255 area 0
+	network 192.168.50.0 0.0.0.255 area 0 
+	network 192.168.60.0 0.0.0.255 area 0 
+exit      
+! 
+!router rip
+!version 2 
+!network 172.16.0.0 0
+!network 192.168.10.0 
+!network 192.168.30.0 
+!network 192.168.50.0  
+!network 192.168.60.0 
+!no auto-summary
+!
+! syslog
+!
+!logging 192.168.10.2
+!logging trap debbuging
+!logging on
+!
+! NTP
+!
+!ntp server 192.168.10.2
+! 
+! DNS
+!
+ip name-server 192.168.10.5
+ip domain-lookup
+!
+! Spanning-tree
+!
+spanning-tree vlan 10 root primary  
+spanning-tree vlan 30 root secondary 
+spanning-tree vlan 50 root secondary
+spanning-tree vlan 60 root primary  
+!
+!
+-----
+-----
+HSRP
+----
+----
+interface f1/0/1
+standby 100 ip 172.16.0.1
+standby 100 preempt
+----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+!
+----
+!CSW02
+----
+!
+enable
+conf t
+hostname CSW02
+service password-encryption
+! – configuration de base-----
+!
+ip domain-name okln.ephec-ti.be
+crypto key generate rsa
+2048
+!
+no ip domain-lookup
+banner login "Access for authorized users only !"
+service password-encryption
+username admin privilege 15 
+enable secret cisco
+ip ssh time-out 15
+ip ssh authentication-retries 3
+line console 0
+  password cisco
+  logging synchronous
+  login
+  exit
+line vty 0 4
+  login local
+  transport input ssh
+  exec-timeout 3 30 
+!
+! ------------------------------------------------------------------------------
+!------------------------creation des vlan--------------------------------------
+vlan 10 
+name service
+vlan 30 
+name guest
+vlan 50 
+name user
+vlan 60 
+name management
+!-------------------------------------------------------------------------------
+!
+interface vlan 10
+  description "vers du VLAN service"
+  ip address 192.168.10.254 255.255.255.0
+  no shutdown
+!      
+interface vlan 30
+  description "vers du VLAN gest"
+  ip address 192.168.30.254 255.255.255.0
+  ip helper-address 192.168.10.8
+  no shutdown
+!
+interface vlan 50
+  description "vers du VLAN user"
+  ip address 192.168.50.254 255.255.255.0
+  ip helper-address 192.168.10.8
+  no shutdown
+!
+interface vlan 60
+  description "vers du VLAN management"
+  ip address 192.168.60.254 255.255.255.0
+  no shutdown
+!
+
+!
+! - Configuration de VTP
+!
+vtp mode server
+vtp domain okln.ephec-ti.be 
+vtp pruning
+vtp password cisco
+!
+! - Configuration des interfaces
+!       
+interface f1/0/1
+  description "vers core-to-distribu(f0/1)"
+  no switchport
+  ip address 172.16.0.3 255.255.255.248
+  no shut
+!  
+interface f1/0/2
+  description "Vers CSW01(f0/5)"
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 60
+!
+interface f1/0/3
+  description "Vers CSW01(f0/4)"
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 60
+!
+interface f1/0/4
+  description "Vers vlan management"
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 60 
+!
+interface f1/0/5
+  description "Vers vlan management"
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 60 
+!
+ 
+! - Routage
+!
+ip routing
+router ospf 1
+	network 172.16.0.0 0.0.0.7 area 0
+	network 192.168.10.0 0.0.0.255 area 0
+	network 192.168.30.0 0.0.0.255 area 0
+	network 192.168.50.0 0.0.0.255 area 0 
+	network 192.168.60.0 0.0.0.255 area 0 
+exit      
+!   
+!router rip
+!version 2 
+!network 172.16.0.0 0
+!network 192.168.10.0 
+!network 192.168.30.0 
+!network 192.168.50.0  
+!network 192.168.60.0
+!no auto-summary
+!
+! syslog
+!
+!logging 192.168.30.2
+!logging trap debbuging
+!logging on
+!
+! NTP
+!
+!ntp server 192.168.10.2
+! 
+! DNS
+!
+ip name-server 192.168.10.5
+ip domain-lookup
+!
+! Spanning-tree
+!
+spanning-tree vlan 10 root secondary  
+spanning-tree vlan 30 root primary 
+spanning-tree vlan 50 root primary
+spanning-tree vlan 60 root secondary  
+!
+-----
+-----
+HSRP
+----
+----
+interface f1/0/1
+standby 100 ip 172.16.0.1
+standby 100 priority 110 
+standby 100 preempt
+----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+hostname SW01
+! ------------------------------------------------------------------------------
+!
+!
+!
+
+enable
+conf t
+hostname SW01
+service password-encryption
+! – configuration de base 
+!
+ip domain-name okln.ephec-ti.be
+crypto key generate rsa
+2048
+!
+no ip domain-lookup
+banner login "Access for authorized users only !"
+service password-encryption
+username admin privilege 15 
+enable secret cisco
+ip ssh time-out 15
+ip ssh authentication-retries 3
+line console 0
+  password cisco
+  logging synchronous
+  login
+  exit
+line vty 0 4
+  login local
+  transport input ssh
+  exec-timeout 3 30 
+!
+exit
+! - Création des VLANs
+!
+!vlan database
+!vlan 10 name service
+!vlan 30 name guest
+!vlan 50 name user
+!vlan 60 name management
+!
+interface vlan 10
+  description "vlan de service reseau"
+  ip address 192.168.10.253 255.255.255.0
+  no shutdown
+!
+ip default-gateway 192.168.10.254
+!
+! - Configuration de VTP
+!
+vtp mode transparent
+vtp mode client
+vtp password cisco
+vtp domain okln.ephec-ti.be
+!
+!Configuration des interfaces
+!       
+interface range F0/1 - 2
+  description "CSW01"
+  switchport trun encapsulation dotq1
+  switchport mode trunk
+  switchport trunk native vlan 60
+  no ip routing
+! 
+!
+interface range F0/3 - 10
+  description "vlan user"
+  switchport mode access
+  switchport access vlan 50
+   no shutdown
+!
+interface range F0/11 - 24
+  description "non utilise"
+  switchport mode access
+  switchport access vlan 50
+  shutdown
+!
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+hostname SW02
+! ------------------------------------------------------------------------------
+!
+!
+!
+!
+enable
+conf t
+hostname SW02
+service password-encryption
+! – configuration de base 
+!
+ip domain-name okln.ephec-ti.be
+crypto key generate rsa
+2048
+!
+no ip domain-lookup
+banner login "Access for authorized users only !"
+service password-encryption
+username admin privilege 15 secret cisco
+ip ssh time-out 15
+ip ssh authentification-retries 3
+line console 0
+  password cisco
+  logging synchronous
+  login
+  exit
+line vty 0 4
+  login local
+  transport input ssh
+  exec time-out 3 30 
+!
+! - Création des VLANs
+!
+!vlan database
+!vlan 10 name service
+!vlan 30 name guest
+!vlan 50 name user
+!vlan 60 name management
+!
+interface vlan 10
+  description "vlan de service reseau"
+  ip address 192.168.10.252 255.255.255.0
+  no shutdown
+!
+ip default-gateway 192.168.10.254
+!
+! - Configuration de VTP
+!
+vtp mode transparent
+vtp mode client
+vtp password cisco
+vtp domain okln.ephec-ti.be
+!
+! - Configuration des interfaces
+!       
+interface range F0/1 - 2
+  description "CSW01"
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk native vlan 60
+  no ip routing
+! 
+!
+interface range F0/3 - 10
+  description "vlan user"
+  switchport mode access
+  switchport access vlan 50
+  no shutdown
+  exit
+!
+interface range F0/11 - 24
+  description "non utilise"
+  switchport mode access
+  switchport access vlan 50
+  shutdown
+!
+        \end{verbatimtab}
+\end{document}
